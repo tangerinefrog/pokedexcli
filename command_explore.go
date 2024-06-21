@@ -18,7 +18,7 @@ func exploreCallback(_ *pagingParam, param string) error {
 
 	fmt.Printf("\nAll pokemon encounters in %s:\n", param)
 	for _, v := range locationArea.PokemonEncounters {
-		fmt.Printf("\t%s\n", v.Pokemon.Name)
+		fmt.Printf("\t- %s\n", v.Pokemon.Name)
 	}
 
 	return nil
