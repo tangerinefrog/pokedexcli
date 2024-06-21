@@ -9,7 +9,7 @@ import (
 	"github.com/tangerinefrog/pokedexcli/internal/pokeapi"
 )
 
-func mapCallback(paging *pagingParam) error {
+func mapCallback(paging *pagingParam, _ string) error {
 	if paging.urlNext == "" && paging.urlPrev != "" {
 		return fmt.Errorf("there's no more location areas left")
 	}
@@ -22,7 +22,7 @@ func mapCallback(paging *pagingParam) error {
 	return nil
 }
 
-func mapbCallback(paging *pagingParam) error {
+func mapbCallback(paging *pagingParam, _ string) error {
 	if paging.urlPrev == "" {
 		return fmt.Errorf("cannot go back")
 	}

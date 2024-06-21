@@ -13,16 +13,26 @@ func main() {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
 
-		cliInput := reader.Text()
-		clearInput(&cliInput)
+		cliRaw := reader.Text()
+		if len(cliRaw) == 0 {
+			continue
+		}
+		cliWords := getInput(cliRaw)
+		c := cliWords[0]
+		p := ""
+		if len(cliWords) > 1 {
+			p = cliWords[1]
+		}
 
-		err := executeCommand(cliInput)
+		err := executeCommand(c, p)
 		if err != nil {
 			fmt.Println(err)
 		}
 	}
 }
 
-func clearInput(input *string) {
-	*input = strings.TrimSpace(*input)
+func getInput(input string) []string {
+	input = strings.TrimSpace(input)
+	words := strings.Fields(input)
+	return words
 }

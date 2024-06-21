@@ -10,7 +10,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*pagingParam) error
+	callback    func(*pagingParam, string) error
 }
 
 type pagingParam struct {
@@ -46,17 +46,23 @@ func init() {
 			description: fmt.Sprintf("Prints previous %d location areas", PageSize),
 			callback:    mapbCallback,
 		},
+		"explore": {
+			name:        "explore <location_area_name>",
+			description: "Prints a list of all Pokémon in a selected area",
+			callback:    exploreCallback,
+		},
 	}
 	pokecache.NewCache(10 * time.Second)
 }
 
-func executeCommand(name string) error {
+func executeCommand(name string, param string) error {
+
 	c, ok := commands[name]
 	if !ok {
 		return fmt.Errorf("unknown command")
 	}
 
-	err := c.callback(&mapParams)
+	err := c.callback(&mapParams, param)
 	if err != nil {
 		return err
 	}
