@@ -12,9 +12,9 @@ func main() {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
 
-		cName := reader.Text()
+		commandName := reader.Text()
 
-		command, ok := getCommand(cName)
+		command, ok := getCommand(commandName)
 		if ok {
 			err := command.callback()
 			if err != nil {

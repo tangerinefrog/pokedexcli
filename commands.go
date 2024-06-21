@@ -20,6 +20,11 @@ func init() {
 			description: "Exits PokedexCLI",
 			callback:    exitCallback,
 		},
+		"map": {
+			name:        "map",
+			description: "Prints location areas",
+			callback:    mapCallback,
+		},
 	}
 }
 
