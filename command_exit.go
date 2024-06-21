@@ -2,7 +2,7 @@ package main
 
 import "os"
 
-func exitCallback() error {
+func exitCallback(*pagingParam) error {
 	os.Exit(0)
 	return nil
 }

@@ -2,12 +2,12 @@ package main
 
 import "fmt"
 
-func helpCallback() error {
+func helpCallback(*pagingParam) error {
 	fmt.Printf("Welcome to PokedexCLI!\n")
 	for _, v := range commands {
 		fmt.Printf("\n\t%s\t%s", v.name, v.description)
 	}
-	fmt.Printf("\n\n")
+	fmt.Printf("\n")
 
 	return nil
 }

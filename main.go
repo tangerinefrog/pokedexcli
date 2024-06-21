@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -12,18 +13,16 @@ func main() {
 		fmt.Print("Pokedex > ")
 		reader.Scan()
 
-		commandName := reader.Text()
+		cliInput := reader.Text()
+		clearInput(&cliInput)
 
-		command, ok := getCommand(commandName)
-		if ok {
-			err := command.callback()
-			if err != nil {
-				fmt.Println(err)
-			}
-			continue
-		} else {
-			fmt.Println("Unknown command")
-			continue
+		err := executeCommand(cliInput)
+		if err != nil {
+			fmt.Println(err)
 		}
 	}
+}
+
+func clearInput(input *string) {
+	*input = strings.TrimSpace(*input)
 }

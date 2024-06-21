@@ -1,14 +1,27 @@
 package main
 
+import (
+	"fmt"
+)
+
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*pagingParam) error
+}
+
+type pagingParam struct {
+	urlNext string
+	urlPrev string
 }
 
 var commands map[string]cliCommand
+var mapParams pagingParam
+
+const PageSize int = 20
 
 func init() {
+	mapParams = pagingParam{}
 	commands = map[string]cliCommand{
 		"help": {
 			name:        "help",
@@ -22,14 +35,30 @@ func init() {
 		},
 		"map": {
 			name:        "map",
-			description: "Prints location areas",
+			description: fmt.Sprintf("Prints next %d location areas", PageSize),
 			callback:    mapCallback,
 		},
+		"mapb": {
+			name:        "mapb",
+			description: fmt.Sprintf("Prints previous %d location areas", PageSize),
+			callback:    mapbCallback,
+		},
 	}
+
 }
 
-func getCommand(name string) (cliCommand, bool) {
+func executeCommand(name string) error {
 	c, ok := commands[name]
+	if !ok {
+		return fmt.Errorf("unknown command")
+	}
 
-	return c, ok
+	err := c.callback(&mapParams)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println()
+
+	return nil
 }
