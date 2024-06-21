@@ -46,9 +46,9 @@ func catchCallback(_ *pagingParam, param string) error {
 				Stats:     stats,
 			})
 
-		fmt.Printf("%s was caught!", pokemonResp.Name)
+		fmt.Printf("%s was caught!\nYou may now inspect it with the inspect command.\n", pokemonResp.Name)
 	} else {
-		fmt.Printf("%s escaped!", pokemonResp.Name)
+		fmt.Printf("%s escaped!\n", pokemonResp.Name)
 	}
 
 	return nil

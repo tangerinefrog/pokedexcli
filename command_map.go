@@ -67,7 +67,7 @@ func printLocationAreas(paging *pagingParam, isForward bool) error {
 	fmt.Printf("Location areas, page %d of %d:\n\n", currentPage(offset), totalPages)
 
 	for _, v := range areasResp.Results {
-		fmt.Printf("\t%s\n", v.Name)
+		fmt.Printf("   - %s\n", v.Name)
 	}
 
 	return nil

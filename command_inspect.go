@@ -22,19 +22,19 @@ func inspectCallback(_ *pagingParam, param string) error {
 }
 
 func printPokemon(pokemon inventory.Pokemon) {
-	fmt.Printf("\nName: %s\n", pokemon.Name)
-	fmt.Printf("Height: %d\n", pokemon.Height)
-	fmt.Printf("Weight: %d\n", pokemon.Weight)
-	fmt.Printf("Stats:\n")
+	fmt.Printf("   - Name: %s\n", pokemon.Name)
+	fmt.Printf("   - Height: %d\n", pokemon.Height)
+	fmt.Printf("   - Weight: %d\n", pokemon.Weight)
+	fmt.Printf("   - Stats:\n")
 	for s, v := range pokemon.Stats {
-		fmt.Printf("   - %s: %d\n", s, v)
+		fmt.Printf("      - %s: %d\n", s, v)
 	}
-	fmt.Printf("Types:\n")
+	fmt.Printf("   - Types:\n")
 	for _, t := range pokemon.Types {
-		fmt.Printf("   - %s\n", t)
+		fmt.Printf("      - %s\n", t)
 	}
-	fmt.Printf("Abilities:\n")
+	fmt.Printf("   - Abilities:\n")
 	for _, a := range pokemon.Abilities {
-		fmt.Printf("   - %s\n", a)
+		fmt.Printf("      - %s\n", a)
 	}
 }
