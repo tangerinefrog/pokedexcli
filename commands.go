@@ -61,6 +61,11 @@ func init() {
 			description: "Inspect a Pokémon from your collection",
 			callback:    inspectCallback,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "List all caught Pokémon in your collection",
+			callback:    pokedexCallback,
+		},
 	}
 	pokecache.NewCache(10 * time.Second)
 }
