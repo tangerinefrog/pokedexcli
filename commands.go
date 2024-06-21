@@ -51,12 +51,21 @@ func init() {
 			description: "Prints a list of all Pokémon in a selected area",
 			callback:    exploreCallback,
 		},
+		"catch": {
+			name:        "catch <pokemon_name>",
+			description: "Try to catch a Pokémon",
+			callback:    catchCallback,
+		},
+		"inspect": {
+			name:        "inspect <pokemon_name>",
+			description: "Inspect a Pokémon from your collection",
+			callback:    inspectCallback,
+		},
 	}
 	pokecache.NewCache(10 * time.Second)
 }
 
 func executeCommand(name string, param string) error {
-
 	c, ok := commands[name]
 	if !ok {
 		return fmt.Errorf("unknown command")
