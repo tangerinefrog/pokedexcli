@@ -4,12 +4,20 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/tangerinefrog/pokedexcli/internal/pokecache"
 )
 
 const baseUrl string = "https://pokeapi.co/api/v2"
 
 func fetchResource(resource string) ([]byte, error) {
+
 	url := baseUrl + resource
+
+	cachedVal, ok := pokecache.Get(url)
+	if ok {
+		return cachedVal, nil
+	}
 
 	resp, err := http.Get(url)
 	if err != nil {
@@ -25,6 +33,8 @@ func fetchResource(resource string) ([]byte, error) {
 	if err != nil {
 		return []byte{}, err
 	}
+
+	pokecache.Add(url, body)
 
 	return body, nil
 }

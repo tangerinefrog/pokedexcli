@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"time"
+
+	"github.com/tangerinefrog/pokedexcli/internal/pokecache"
 )
 
 type cliCommand struct {
@@ -44,7 +47,7 @@ func init() {
 			callback:    mapbCallback,
 		},
 	}
-
+	pokecache.NewCache(10 * time.Second)
 }
 
 func executeCommand(name string) error {
